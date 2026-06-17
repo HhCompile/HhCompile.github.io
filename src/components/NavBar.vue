@@ -27,53 +27,58 @@ const labelMap = {
           :aria-label="`切换主题，当前：${labelMap[theme]}`"
           :title="`当前：${labelMap[theme]}（点击切换）`"
         >
-          <!-- 月亮（暗色） -->
-          <svg
-            v-if="theme === 'dark'"
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-          </svg>
-          <!-- 太阳（亮色） -->
-          <svg
-            v-else-if="theme === 'light'"
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <circle cx="12" cy="12" r="4" />
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-          </svg>
-          <!-- 显示器（跟随系统） -->
-          <svg
-            v-else
-            xmlns="http://www.w3.org/2000/svg"
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <rect x="2" y="3" width="20" height="14" rx="2" />
-            <path d="M8 21h8M12 17v4" />
-          </svg>
+          <Transition name="theme-icon" mode="out-in">
+            <!-- 月亮（暗色） -->
+            <svg
+              v-if="theme === 'dark'"
+              key="dark"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+            </svg>
+            <!-- 太阳（亮色） -->
+            <svg
+              v-else-if="theme === 'light'"
+              key="light"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+            </svg>
+            <!-- 显示器（跟随系统） -->
+            <svg
+              v-else
+              key="system"
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="3" width="20" height="14" rx="2" />
+              <path d="M8 21h8M12 17v4" />
+            </svg>
+          </Transition>
         </button>
       </nav>
     </div>
@@ -124,12 +129,33 @@ nav a:hover { color: var(--fg); text-decoration: none; }
   background: transparent;
   color: var(--fg-muted);
   cursor: pointer;
+  overflow: hidden;
   transition: all 0.2s ease-out;
 }
 .theme-toggle:hover {
   border-color: var(--accent);
   color: var(--accent);
   background: var(--accent-soft);
+}
+
+/* 图标切换动画：旋转 180° + 淡入淡出，200ms 平滑曲线 */
+.theme-icon-enter-active,
+.theme-icon-leave-active {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.theme-icon-enter-from {
+  transform: rotate(-180deg) scale(0.6);
+  opacity: 0;
+}
+.theme-icon-leave-to {
+  transform: rotate(180deg) scale(0.6);
+  opacity: 0;
+}
+.theme-icon-enter-to,
+.theme-icon-leave-from {
+  transform: rotate(0) scale(1);
+  opacity: 1;
 }
 
 @media (max-width: 640px) {
