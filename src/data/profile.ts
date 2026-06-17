@@ -54,7 +54,11 @@ export const profile: Profile = {
     'React + Umi 4 + Ant Design Pro', '前端工程化（ESLint/Prettier/Husky）',
     '微前端（qiankun）', 'CI/CD（Jenkins / GitHub Actions / miniprogram-CI）',
     'Taro / uni-app / 微信小程序', 'Node.js 中间层（Express / Koa）',
-    '前端监控 / 性能优化', 'AI 工具链（Claude Code / Cursor / Vibe Coding）'
+    '前端监控 / 性能优化',
+    // AI 工具链（深度融入日常开发）
+    'Claude Code', 'Cursor', 'Kimi / DeepSeek', 'Vibe Coding 工作流',
+    // 软实力
+    '技术方案评审', '团队 Code Review', '技术分享与布道', '跨部门协作（产品 / 设计 / 后端）'
   ],
 
   experiences: [
@@ -106,6 +110,27 @@ export const profile: Profile = {
 
   projects: [
     {
+      name: 'json-schema-form-engine',
+      desc: 'JSON Schema 驱动的可视化表单引擎 · 渲染 / 校验 / 拖拽设计一体化',
+      tags: ['TypeScript', '可视化', '组件库'],
+      repo: 'https://github.com/HhCompile/json-schema-form-engine',
+      highlight: 'Vibe Coding 2 周完成开源'
+    },
+    {
+      name: 'dynamic-virtual-list',
+      desc: '高性能 Vue 3 动态高度虚拟滚动组件 · 零第三方依赖',
+      tags: ['Vue 3', 'TypeScript', '性能优化', '零依赖'],
+      repo: 'https://github.com/HhCompile/dynamic-virtual-list',
+      highlight: '模块化架构 + 双版本支持，轻松接入万级列表场景'
+    },
+    {
+      name: 'bookmark-manager',
+      desc: '书签管理工具 · Web 端 + 后端一体化，支持分类 / 标签 / 全文搜索',
+      tags: ['Vue', 'TypeScript', 'Node.js', '全栈'],
+      repo: 'https://github.com/HhCompile/bookmark-manager-web',
+      highlight: '前后端独立仓库，便于演示和二次开发'
+    },
+    {
       name: '得助 SaaS LTC 计费中台',
       desc: '马上消费旗下 SaaS 订阅制计费中台，覆盖商品 / 订单 / 账单 / 账户全链路',
       tags: ['React 18', 'Umi 4', 'TypeScript', 'qiankun', 'JSON Schema'],
@@ -122,13 +147,6 @@ export const profile: Profile = {
       desc: '企业级云真机自动化测试平台：录制回放 / 远程操控 / 数据看板',
       tags: ['Vue 3', 'Vite', 'CodeMirror', 'ECharts'],
       highlight: '录制回放编辑器首屏 FCP 4.2s → 1.6s，体积减少 60%'
-    },
-    {
-      name: 'json-schema-form-engine',
-      desc: 'JSON Schema 驱动的可视化表单引擎 · 渲染 / 校验 / 拖拽设计一体化',
-      tags: ['TypeScript', '可视化', '组件库'],
-      repo: 'https://github.com/HhCompile/json-schema-form-engine',
-      highlight: 'Vibe Coding 2 周完成开源'
     },
     {
       name: '筑管云数字化后台 + 小程序',
