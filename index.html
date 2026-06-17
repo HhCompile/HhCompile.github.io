@@ -33,9 +33,27 @@
       name="twitter:description"
       content="8 年前端开发经验，主导过 4 条完整产品线前端体系。配置化抽象 + AI-Native 工作流。"
     />
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#0b0d12" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="孙浩航" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
   </head>
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
+    <script>
+      // 注册 Service Worker（PWA 离线支持 + "添加到主屏幕"）
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch((err) => {
+            console.warn('SW 注册失败:', err)
+          })
+        })
+      }
+    </script>
   </body>
 </html>
