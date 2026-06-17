@@ -1,4 +1,15 @@
+/* ===== 基础变量（与主题无关） ===== */
 :root {
+  --max-w: 920px;
+  --radius: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-feature-settings: "cv11", "ss01";
+  color-scheme: dark light;
+}
+
+/* ===== 暗色主题（默认 + 显式 dark） ===== */
+:root,
+:root[data-theme="dark"] {
   --bg: #0b0d12;
   --bg-soft: #11141b;
   --fg: #e6e8ee;
@@ -6,14 +17,50 @@
   --accent: #6aa9ff;
   --accent-soft: rgba(106, 169, 255, 0.12);
   --border: #1f242e;
-  --max-w: 920px;
-  --radius: 14px;
-  --shadow: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.2);
-  font-family: -apple-system, BlinkMacSystemFont, "Inter", "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-feature-settings: "cv11", "ss01";
-  color-scheme: dark light;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.2);
+  --navbar-bg: rgba(11, 13, 18, 0.7);
+  --hl-bg: rgba(106, 169, 255, 0.12);
+  --btn-primary-fg: #ffffff;
 }
 
+/* ===== 亮色主题（显式 light） ===== */
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-soft: #f6f7f9;
+  --fg: #1a1d24;
+  --fg-muted: #5a6270;
+  --accent: #1e5aad;
+  --accent-soft: rgba(30, 90, 173, 0.10);
+  --border: #e6e8ee;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
+  --navbar-bg: rgba(255, 255, 255, 0.75);
+  --hl-bg: rgba(30, 90, 173, 0.08);
+  --btn-primary-fg: #ffffff;
+}
+
+/* ===== 跟随系统（无 data-theme + 系统为 light） ===== */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    --bg: #ffffff;
+    --bg-soft: #f6f7f9;
+    --fg: #1a1d24;
+    --fg-muted: #5a6270;
+    --accent: #1e5aad;
+    --accent-soft: rgba(30, 90, 173, 0.10);
+    --border: #e6e8ee;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04);
+    --navbar-bg: rgba(255, 255, 255, 0.75);
+    --hl-bg: rgba(30, 90, 173, 0.08);
+    --btn-primary-fg: #ffffff;
+  }
+}
+
+/* ===== 全局过渡（主题切换不生硬） ===== */
+html, body, .navbar, .card, .btn, .tag, a {
+  transition: background-color 0.2s ease-out, color 0.2s ease-out, border-color 0.2s ease-out;
+}
+
+/* ===== 基础样式 ===== */
 * { box-sizing: border-box; }
 
 html, body {
@@ -93,11 +140,11 @@ ul li { margin-bottom: 4px; }
 .btn.primary {
   background: var(--accent);
   border-color: var(--accent);
-  color: #fff;
+  color: var(--btn-primary-fg);
 }
 .btn.primary:hover {
   filter: brightness(1.1);
-  color: #fff;
+  color: var(--btn-primary-fg);
 }
 
 @media (max-width: 640px) {

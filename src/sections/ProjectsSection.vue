@@ -27,7 +27,7 @@ defineProps<{ projects: Project[] }>()
 .hl {
   font-size: 13px;
   color: var(--accent);
-  background: var(--accent-soft);
+  background: var(--hl-bg);
   padding: 6px 10px;
   border-radius: 6px;
   margin: 8px 0;

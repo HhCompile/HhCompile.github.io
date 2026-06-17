@@ -5,6 +5,18 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- 防 FOUC：在 CSS 加载前同步设置 data-theme，避免刷新闪烁 -->
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('hhcompile-theme')
+          if (t === 'light' || t === 'dark') {
+            document.documentElement.setAttribute('data-theme', t)
+          }
+        } catch (e) {}
+      })()
+    </script>
+
     <!-- Primary Meta Tags -->
     <title>孙浩航 · 高级前端开发工程师 / 前端架构师</title>
     <meta name="title" content="孙浩航 · 高级前端开发工程师 / 前端架构师" />
