@@ -130,12 +130,23 @@ nav a:hover { color: var(--fg); text-decoration: none; }
   color: var(--fg-muted);
   cursor: pointer;
   overflow: hidden;
+  position: relative;
   transition: all 0.2s ease-out;
 }
 .theme-toggle:hover {
   border-color: var(--accent);
   color: var(--accent);
   background: var(--accent-soft);
+}
+
+/* 点击瞬间：弹性脉冲（光环扩散 + 轻微放大） */
+.theme-toggle:active {
+  animation: theme-pulse 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes theme-pulse {
+  0%   { transform: scale(1);    box-shadow: 0 0 0 0 var(--accent-soft); }
+  50%  { transform: scale(1.12); box-shadow: 0 0 0 6px var(--accent-soft); }
+  100% { transform: scale(1);    box-shadow: 0 0 0 0 var(--accent-soft); }
 }
 
 /* 图标切换动画：旋转 180° + 淡入淡出，200ms 平滑曲线 */
